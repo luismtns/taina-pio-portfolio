@@ -1,0 +1,28 @@
+.header {
+  padding: 22px 30px;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-black;
+  &__links {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    a {
+      font-weight: 200;
+      font-size: 7.5rem;
+    }
+  }
+  &__locales {
+    font-weight: 200;
+    font-size: 7.5rem;
+    text-align: right;
+    text-transform: capitalize;
+    a {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+    .active {
+      text-decoration: underline;
+    }
+  }
+}

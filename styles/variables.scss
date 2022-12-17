@@ -1,0 +1,63 @@
+/* Fonts */
+$font-family-default: "Inter", sans-serif;
+$font-family-headings: "Inter", sans-serif;
+$font-size-root: 8;
+
+/* Breakpoints */
+$break-mobile: 540px;
+$break-tablet: 768px;
+$break-desktop: 1024px;
+$break-desktop-large: 1400px;
+$break-desktop-x-large: 1600px;
+
+/* Widths */
+$width-desktop: 128rem;
+$width-desktop-wide: 142rem;
+
+/* Colors */
+$color-black: #000;
+$color-white: #fff;
+$color-white-encoded: "%23ffffff";
+
+$color-gray-darkest: #a7a7a7;
+$color-gray-dark: #cdcdcd;
+$color-gray-light: #e7e7e7;
+$color-gray-lightest: #f4f4f4;
+
+$color-red: #d63037;
+$color-red-hover: #c02b31;
+$color-red-encoded: "%23d63037";
+
+$color-purple: #685f77;
+$color-purple-hover: #4a4355;
+$color-purple-encoded: "%23685f77";
+
+$color-green-encoded: "%23d8e8dd";
+$color-pink-encoded: "%23f8e9e8";
+$color-blue-encoded: "%23d8ecee";
+$color-orange-encoded: "%23efa48e";
+
+:export {
+  font-family-default: $font-family-default;
+  font-family-headings: $font-family-headings;
+  font-size-root: $font-size-root;
+  width-desktop: $width-desktop;
+  width-desktop-wide: $width-desktop-wide;
+  color-black: $color-black;
+  color-white: $color-white;
+  color-white-encoded: $color-white-encoded;
+  color-gray-darkest: $color-gray-darkest;
+  color-gray-dark: $color-gray-dark;
+  color-gray-light: $color-gray-light;
+  color-gray-lightest: $color-gray-lightest;
+  color-red: $color-red;
+  color-red-hover: $color-red-hover;
+  color-red-encoded: $color-red-encoded;
+  color-purple: $color-purple;
+  color-purple-hover: $color-purple-hover;
+  color-purple-encoded: $color-purple-encoded;
+  color-green-encoded: $color-green-encoded;
+  color-pink-encoded: $color-pink-encoded;
+  color-blue-encoded: $color-blue-encoded;
+  color-orange-encoded: $color-orange-encoded;
+}
