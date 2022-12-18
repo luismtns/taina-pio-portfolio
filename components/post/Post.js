@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-// import { useMediaQuery } from "react-responsive";
-// import Well from "../../shared/components/Well";
-import PublishDate from "./PublishDate";
-import Details from "./Details";
+import { Col, Container, Row } from "react-grid-system";
+import { getParagraphs, getTitle } from "utils/html";
+
+import styles from "./Post.module.scss";
+
 import TextBlock from "./TextBlock";
 import MediaBlock from "./MediaBlock";
-import LinkBlock from "./LinkBlock";
-import AnswerBlock from "./AnswerBlock";
 
-const Post = ({ post, isPermalink }) => {
+const Post = ({ post, nextPost, prevPost }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   // const isTablet = useMediaQuery({
@@ -22,53 +21,58 @@ const Post = ({ post, isPermalink }) => {
   }, []);
 
   return (
-    <article className="post">
-      <div className="post__details">
-        {isMounted && (
-          <>
-            <PublishDate date={post.date} />
-            <Details post={post} />
-          </>
-        )}
+    <article className={styles.post}>
+      <div className={styles.about}>
+        <Container fluid>
+          <Row>
+            <Col xs={12}>
+              <div
+                className={styles.title}
+                dangerouslySetInnerHTML={{ __html: getTitle(post.caption) }}
+              />
+              <div className={styles.content}>
+                <div className={styles.grid}>
+                  {getParagraphs(post.caption).map((__html, k) => (
+                    <span
+                      key={k}
+                      className={styles.content__text}
+                      dangerouslySetInnerHTML={{ __html }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
+      <Container>
+        <Row align="center">
+          <Col xs={2} lg={1}>
+            <Link className={styles.post__prev} href={prevPost}></Link>
+          </Col>
+          <Col xs={8} lg={10}>
+            <div className="post__body">
+              {post.type === "text" && <TextBlock post={post} />}
+              {post.type === "photo" && <MediaBlock post={post} />}
+              {post.type === "photoset" && <MediaBlock post={post} />}
+              {post.type === "video" && <MediaBlock post={post} />}
+            </div>
+          </Col>
+          <Col xs={2} lg={1}>
+            <Link className={styles.post__next} href={nextPost}></Link>
+          </Col>
+        </Row>
 
-      <div className="post__content">
-        {/* <Well size="custom"> */}
-        {isMounted && <PublishDate date={post.date} />}
-
-        <div className="post__body">
-          {post.type === "text" && <TextBlock post={post} />}
-          {post.type === "photo" && <MediaBlock post={post} />}
-          {post.type === "photoset" && <MediaBlock post={post} />}
-          {post.type === "video" && <MediaBlock post={post} />}
-          {post.type === "audio" && <div />}
-          {post.type === "link" && <LinkBlock post={post} />}
-          {post.type === "answer" && <AnswerBlock post={post} />}
-        </div>
-
-        {isMounted && <Details post={post} />}
-
-        {!isPermalink && (
-          <footer className="post__footer" aria-label="Post footer">
-            <Link href={post.pathname}>Permalink</Link>
-          </footer>
-        )}
-        {/* </Well> */}
-
-        {/* {isPermalink && (
-          <>
-            {post.note_count > 0 && <Notes post={post} />}
-            <Comments />
-          </>
-        )} */}
-      </div>
+        {/* {isMounted && <Details post={post} />} */}
+      </Container>
     </article>
   );
 };
 
 Post.propTypes = {
   post: PropTypes.object,
-  isPermalink: PropTypes.bool,
+  nextPost: PropTypes.string,
+  prevPost: PropTypes.string,
 };
 
 export default Post;

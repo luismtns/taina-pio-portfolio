@@ -46,7 +46,7 @@ const PostsList = ({ posts }) => {
       </div>
       {filteredPosts(posts, filter).length > 0 ? (
         filteredPosts(posts, filter).map((post, k) => (
-          <Link href={`/${post.id}`} className={styles.item} key={k}>
+          <Link href={`/${post.slug}`} className={styles.item} key={k}>
             <div
               className={styles.title}
               dangerouslySetInnerHTML={{ __html: getTitle(post.caption) }}

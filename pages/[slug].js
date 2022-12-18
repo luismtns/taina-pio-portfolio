@@ -4,8 +4,8 @@ import { find } from "../utils/tumblr";
 import Layout from "../components/layout";
 import Post from "../components/post/Post";
 
-const Show = ({ post }) => {
-  // console.log({ post });
+const Show = ({ post, nextPost, prevPost }) => {
+  console.log({ nextPost, prevPost });
   const formattedDate = new Date(
     post.date.replace(/-/g, "/")
   ).toLocaleDateString("pt-BR", {
@@ -62,37 +62,45 @@ const Show = ({ post }) => {
         structuredData,
       }}
     >
-      <Post post={post} isPermalink={true} />
+      <Post
+        post={post}
+        nextPost={nextPost}
+        prevPost={prevPost}
+      />
     </Layout>
   );
 };
 
 export async function getStaticPaths({ locale }) {
-  const response = await find(locale, 20);
-
+  const response = await find(locale, 50);
+  console.log(response);
   return {
     paths: response.posts.map((post) => {
       // const params = new URL(post.slug).pathname
       //   .replace("/post/", "")
       //   .split("/");
       // console.log(params);
-      return { params: { id: [post.id, post.slug] } };
+      return { params: { slug: post.slug } };
     }),
     fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params, locale }) {
-  console.log({ params });
-  const response = await find(locale, 1, 1, params.id[0]);
+  const response = await find(locale, 50);
 
-  if (!(response.posts || [])[0]) {
+  const postIndex = response.posts.findIndex(({ slug }) => params.slug == slug);
+  if (!(response.posts || [])[0] || postIndex < 0) {
     return { notFound: true };
   }
 
   return {
     props: {
-      post: response.posts[0],
+      post: response.posts[postIndex],
+      nextPost: response.posts[postIndex + 1]?.slug || response.posts[0].slug,
+      prevPost:
+        response.posts[postIndex - 1]?.slug ||
+        response.posts[response.posts.length - 1].slug,
     },
     revalidate: 3600,
   };

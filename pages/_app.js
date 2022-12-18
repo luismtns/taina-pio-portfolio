@@ -1,8 +1,9 @@
 import "../styles/global.scss";
-import "react-flexbox-grid/dist/react-flexbox-grid.css";
 import "modern-css-reset/dist/reset.min.css";
+import { setConfiguration } from "react-grid-system";
 
 function MyApp({ Component, pageProps }) {
+  setConfiguration({ maxScreenClass: "xl" });
   return <Component {...pageProps} />;
 }
 

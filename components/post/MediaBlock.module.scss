@@ -1,0 +1,23 @@
+@import "/styles/svgs";
+
+.media {
+  margin-top: 20px;
+}
+.photos {
+  &__item {
+    display: none;
+    &.visible {
+      display: block;
+    }
+  }
+}
+.nextPhoto {
+  background: url(arrowDown()) no-repeat left center;
+  background-size: contain;
+  height: 80px;
+  width: 80px;
+  display: block;
+  content: " ";
+  margin: 20px auto;
+  cursor: pointer;
+}

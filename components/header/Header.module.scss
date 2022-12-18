@@ -1,5 +1,5 @@
 .header {
-  padding: 22px 30px;
+  padding: 16px 0;
   background-color: $color-white;
   border-bottom: 1px solid $color-black;
   &__links {
@@ -9,12 +9,12 @@
     justify-content: center;
     a {
       font-weight: 200;
-      font-size: 7.5rem;
+      font-size: 6rem;
     }
   }
   &__locales {
     font-weight: 200;
-    font-size: 7.5rem;
+    font-size: 6rem;
     text-align: right;
     text-transform: capitalize;
     a {

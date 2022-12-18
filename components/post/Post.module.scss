@@ -1,0 +1,56 @@
+@import "/styles/svgs";
+.post {
+  &__prev {
+    background: url(arrowLeft()) no-repeat left center;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+    display: block;
+    content: " ";
+  }
+  &__next {
+    background: url(arrowRight()) no-repeat left center;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+    display: block;
+    content: " ";
+  }
+}
+
+.about {
+  border-bottom: 1px solid $color-black;
+  h2 {
+    font-size: 24px;
+    padding: 8px 0;
+  }
+  .content {
+    height: 0;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    background-color: $color-white;
+    transition: height 300ms ease;
+    padding: 0 15px;
+    border-bottom: 1px solid $color-black;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    &__text {
+      padding-bottom: 20px;
+      display: inline-block;
+    }
+  }
+  &:hover {
+    .content {
+      height: fit-content;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { ReactPropTypes } from "react";
+import { Col, Container, Row } from "react-grid-system";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Grid, Row, Col } from "react-flexbox-grid/dist/react-flexbox-grid";
 import cn from "classnames";
 
 import styles from "./Header.module.scss";
@@ -10,7 +10,7 @@ const Header = ({ name, links }) => {
   const { locale, locales, defaultLocale, asPath } = useRouter();
   return (
     <div className={styles.header}>
-      <Grid fluid>
+      <Container fluid>
         <Row>
           <Col xs={12} lg={4}>
             <h2>{name}</h2>
@@ -32,9 +32,7 @@ const Header = ({ name, links }) => {
                 {locales.reverse().map((local, k) => (
                   <React.Fragment key={k}>
                     <Link
-                      href={`${
-                        local == defaultLocale ? "" : `/${local}`
-                      }${asPath}`}
+                      href={`${local == defaultLocale ? "/" : `/${local}`}`}
                       locale={false}
                       className={cn({
                         [styles.active]: local == locale,
@@ -49,7 +47,7 @@ const Header = ({ name, links }) => {
             )}
           </Col>
         </Row>
-      </Grid>
+      </Container>
     </div>
   );
 };

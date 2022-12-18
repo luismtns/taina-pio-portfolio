@@ -1,15 +1,31 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./MediaBlock.styles.js";
+import styles from "./MediaBlock.module.scss";
 import Image from "next/image";
+import cn from "classnames";
 
 const MediaBlock = ({ post }) => {
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+  const nextPhoto = (newIndex) => {
+    if (post.photos[newIndex]) {
+      setCurrentPhoto(newIndex);
+    } else {
+      setCurrentPhoto(0);
+    }
+  };
   return (
-    <div className="media">
+    <div className={styles.media}>
+      {/* <div dangerouslySetInnerHTML={{ __html: post.caption }} /> */}
       {post.photos && (
-        <div className="media__content">
+        <div className={styles.photos}>
           {post.photos.map((photo, i) => {
             return (
-              <div key={i}>
+              <div
+                className={cn(styles.photos__item, {
+                  [styles.visible]: currentPhoto == i,
+                })}
+                key={i}
+              >
                 <img alt="" src={photo.original_size.url} />
                 <div dangerouslySetInnerHTML={{ __html: photo.caption }} />
               </div>
@@ -17,8 +33,12 @@ const MediaBlock = ({ post }) => {
           })}
         </div>
       )}
+      <div
+        className={styles.nextPhoto}
+        onClick={() => nextPhoto(currentPhoto + 1)}
+      />
 
-      {post.video && post.video.youtube && (
+      {/* {post.video && post.video.youtube && (
         <div className="media__content media__content--video">
           <iframe
             width="700"
@@ -29,13 +49,7 @@ const MediaBlock = ({ post }) => {
             allowFullScreen
           />
         </div>
-      )}
-
-      <div dangerouslySetInnerHTML={{ __html: post.caption }} />
-
-      <style jsx global>
-        {styles}
-      </style>
+      )} */}
     </div>
   );
 };
