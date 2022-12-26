@@ -1,4 +1,14 @@
 .postslist {
+  button.toggleFilterBtn {
+    @include respond-to($break-md) {
+      display: block;
+      width: 100%;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid $color-black;
+      margin-bottom: 0;
+    }
+  }
   .tagsfilter {
     display: flex;
     flex-direction: row;
@@ -6,9 +16,30 @@
     .btn {
       margin-left: 18px;
       min-width: 180px;
+      @include respond-to($break-md) {
+        width: 100%;
+        display: block;
+        margin-left: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $color-black;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
       &:first-child {
         margin-left: 0;
       }
+    }
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      float: right;
     }
   }
 
@@ -20,8 +51,26 @@
     }
     display: flex;
     flex-direction: row;
+    @include respond-to($break-md) {
+      flex-direction: column;
+    }
+    &.tagsfilter {
+      @include respond-to($break-md) {
+        flex-direction: column;
+        display: none;
+        padding: 8px 0;
+        &.visible {
+          display: flex;
+        }
+      }
+    }
     .title {
       flex: 0.5;
+      @include respond-to($break-md) {
+        flex: 1;
+        display: block;
+        width: 100%;
+      }
     }
     .tags {
       width: 100%;
@@ -31,12 +80,20 @@
       align-items: center;
       justify-content: space-between;
       padding-left: 60px;
+      @include respond-to($break-md) {
+        flex-direction: row;
+        flex: 1;
+      }
       .tagItem {
         width: 100%;
         text-align: center;
         margin-left: 18px;
         min-width: 180px;
         opacity: 0;
+        @include respond-to($break-md) {
+          min-width: auto;
+          width: 60px;
+        }
         &:first-child {
           margin-left: 0;
         }

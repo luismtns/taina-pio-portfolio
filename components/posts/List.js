@@ -11,10 +11,12 @@ import Button from "../button";
 import Image from "next/image";
 import { TEXTS } from "constants/texts";
 import Link from "next/link";
+import { Visible } from "react-grid-system";
 
 const PostsList = ({ posts }) => {
   const { locale } = useRouter();
   const [filter, setFilter] = useState([]);
+  const [filterVisible, setFilterVisible] = useState(false);
   const handleFilterChange = (v) => {
     setFilter((current) =>
       current.includes(v) ? current.filter((e) => e != v) : [...current, v]
@@ -32,7 +34,17 @@ const PostsList = ({ posts }) => {
   };
   return (
     <div className={styles.postslist}>
-      <div className={cn(styles.item, styles.tagsfilter)}>
+      <Button
+        onClick={() => setFilterVisible((v) => !v)}
+        className={styles.toggleFilterBtn}
+      >
+        Filtros
+      </Button>
+      <div
+        className={cn(styles.item, styles.tagsfilter, {
+          [styles.visible]: filterVisible,
+        })}
+      >
         {FEATURED_TAGS.map(({ name, slug, icon }, k) => (
           <Button
             key={k}
@@ -41,6 +53,13 @@ const PostsList = ({ posts }) => {
             active={filter.includes(slug)}
           >
             {name[locale]}
+            <Visible xs sm md>
+              <Image
+                className={styles.icon}
+                src={icon}
+                alt={name[locale] || slug}
+              />
+            </Visible>
           </Button>
         ))}
       </div>

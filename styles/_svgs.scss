@@ -9,3 +9,10 @@
 @function arrowDown() {
   @return "data:image/svg+xml,%3Csvg width='82' height='101' viewBox='0 0 82 101' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M41 0L41 100' stroke='black'/%3E%3Cpath d='M81 60V60C63.0257 67.7033 48.7033 82.0256 41 100V100' stroke='black'/%3E%3Cpath d='M41 100V100C33.2967 82.0256 18.9744 67.7033 1.00001 60V60' stroke='black'/%3E%3C/svg%3E%0A";
 }
+
+@function menu() {
+  @return "data:image/svg+xml,%3Csvg width='48' height='35' viewBox='0 0 48 35' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 34H48' stroke='black'/%3E%3Cpath d='M0 18H48' stroke='black'/%3E%3Cpath d='M0 1H48' stroke='black'/%3E%3C/svg%3E%0A";
+}
+@function close() {
+  @return "data:image/svg+xml,%3Csvg width='34' height='34' viewBox='0 0 34 34' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.5L33.5 33' stroke='black'/%3E%3Cpath d='M33.5 0.5L0.999999 33' stroke='black'/%3E%3C/svg%3E%0A";
+}

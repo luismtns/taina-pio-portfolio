@@ -1,22 +1,39 @@
+@import "/styles/svgs";
 .header {
   padding: 16px 0;
   background-color: $color-white;
   border-bottom: 1px solid $color-black;
+  position: relative;
   &__links {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
+    @include respond-to($break-md) {
+      padding-top: 8px;
+    }
     a {
       font-weight: 200;
       font-size: 6rem;
+      @include respond-to($break-md) {
+        font-size: 3rem;
+        margin: 0 0 8px;
+        display: inline-block;
+      }
     }
   }
   &__locales {
+    width: 100%;
     font-weight: 200;
     font-size: 6rem;
     text-align: right;
     text-transform: capitalize;
+    @include respond-to($break-md) {
+      text-align: center;
+      display: inline-block;
+      margin: 0 0 8px;
+      font-size: 3rem;
+    }
     a {
       font-weight: inherit;
       font-size: inherit;
@@ -25,4 +42,32 @@
       text-decoration: underline;
     }
   }
+}
+div.menu {
+  @include respond-to($break-md) {
+    display: none;
+    position: absolute !important;
+    top: 65px;
+    background-color: $color-white;
+    width: 100%;
+    z-index: 90;
+    font-size: 12px;
+    height: 90vh;
+  }
+  &.visible {
+    display: block;
+  }
+}
+button.btnMenu {
+  background: url(menu()) no-repeat left center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  display: block;
+  content: " ";
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+  float: right;
 }

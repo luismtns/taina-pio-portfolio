@@ -20,4 +20,9 @@
   content: " ";
   margin: 20px auto;
   cursor: pointer;
+  @include respond-to($break-md) {
+    height: 40px;
+    width: 40px;
+    margin: 8px auto;
+  }
 }

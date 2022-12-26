@@ -4,11 +4,11 @@ $font-family-headings: "Inter", sans-serif;
 $font-size-root: 8;
 
 /* Breakpoints */
-$break-mobile: 540px;
-$break-tablet: 768px;
-$break-desktop: 1024px;
-$break-desktop-large: 1400px;
-$break-desktop-x-large: 1600px;
+$break-xs: "(max-width: 540px)";
+$break-md: "(max-width: 768px)";
+$break-lg: "(max-width: 1024px)";
+$break-xl: "(max-width: 1400px)";
+$break-xxl: "(max-width: 1600px)";
 
 /* Widths */
 $width-desktop: 128rem;

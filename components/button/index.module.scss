@@ -11,4 +11,7 @@
 .active {
   background-color: $color-black;
   color: $color-white;
+  img {
+    filter: invert(100);
+  }
 }

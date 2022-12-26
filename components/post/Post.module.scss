@@ -1,25 +1,30 @@
 @import "/styles/svgs";
 .post {
-  &__prev {
-    background: url(arrowLeft()) no-repeat left center;
+  @include respond-to($break-md) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .arrow {
     background-size: contain;
     height: 80px;
     width: 80px;
     display: block;
     content: " ";
+
+    @include respond-to($break-md) {
+      display: none;
+    }
+  }
+  &__prev {
+    background: url(arrowLeft()) no-repeat left center;
   }
   &__next {
     background: url(arrowRight()) no-repeat left center;
-    background-size: contain;
-    height: 80px;
-    width: 80px;
-    display: block;
-    content: " ";
   }
 }
 
 .about {
-  border-bottom: 1px solid $color-black;
+  // border-bottom: 1px solid $color-black;
   h2 {
     font-size: 24px;
     padding: 8px 0;
@@ -29,18 +34,31 @@
     width: 100%;
     position: absolute;
     overflow: hidden;
+    overflow-y: auto;
     z-index: 1;
-    bottom: 0;
+    bottom: 2px;
     left: 0;
     transform: translateY(100%);
     background-color: $color-white;
     transition: height 300ms ease;
     padding: 0 15px;
     border-bottom: 1px solid $color-black;
+    @include respond-to($break-md) {
+      position: relative;
+      border-bottom: none;
+      height: fit-content;
+      overflow: auto;
+      transform: none;
+      padding: 0;
+    }
     .grid {
       display: grid;
+      padding: 8px 0;
       grid-template-columns: 1fr 1fr;
       gap: 30px;
+      @include respond-to($break-md) {
+        grid-template-columns: 1fr;
+      }
     }
 
     &__text {
@@ -50,7 +68,10 @@
   }
   &:hover {
     .content {
-      height: fit-content;
+      height: 50vh;
+      @include respond-to($break-md) {
+        height: auto;
+      }
     }
   }
 }

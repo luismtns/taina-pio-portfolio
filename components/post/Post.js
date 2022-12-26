@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import cn from "classnames";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { Col, Container, Row } from "react-grid-system";
@@ -48,7 +49,10 @@ const Post = ({ post, nextPost, prevPost }) => {
       <Container>
         <Row align="center">
           <Col xs={2} lg={1}>
-            <Link className={styles.post__prev} href={prevPost}></Link>
+            <Link
+              className={cn(styles.post__prev, styles.arrow)}
+              href={prevPost}
+            ></Link>
           </Col>
           <Col xs={8} lg={10}>
             <div className="post__body">
@@ -59,7 +63,10 @@ const Post = ({ post, nextPost, prevPost }) => {
             </div>
           </Col>
           <Col xs={2} lg={1}>
-            <Link className={styles.post__next} href={nextPost}></Link>
+            <Link
+              className={cn(styles.post__next, styles.arrow)}
+              href={nextPost}
+            ></Link>
           </Col>
         </Row>
 
