@@ -29,7 +29,9 @@ const Header = ({ name, links }) => {
             <Col xs={4} lg={0}>
               <Button
                 onClick={() => setMenuVisible((v) => !v)}
-                className={styles.btnMenu}
+                className={cn(styles.btnMenu, {
+                  [styles["btnMenu-active"]]: !!menuVisible,
+                })}
               />
             </Col>
           </Visible>

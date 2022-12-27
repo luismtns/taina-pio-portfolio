@@ -56,8 +56,10 @@ div.menu {
     transition: height 300ms ease-in;
   }
   &.visible {
-    height: calc(100vh - 80px);
-    border-bottom: 1px solid $color-black;
+    @include respond-to($break-md) {
+      height: calc(100vh - 80px);
+      border-bottom: 1px solid $color-black;
+    }
   }
 }
 button.btnMenu {
@@ -72,4 +74,7 @@ button.btnMenu {
   border-radius: 0;
   border: none;
   float: right;
+  &-active {
+    background: url(close()) no-repeat left center;
+  }
 }
