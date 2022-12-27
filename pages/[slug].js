@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import Post from "../components/post/Post";
 
 const Show = ({ post, nextPost, prevPost }) => {
-  console.log({ nextPost, prevPost });
+  console.log({ post });
   const formattedDate = new Date(
     post.date.replace(/-/g, "/")
   ).toLocaleDateString("pt-BR", {
@@ -62,18 +62,13 @@ const Show = ({ post, nextPost, prevPost }) => {
         structuredData,
       }}
     >
-      <Post
-        post={post}
-        nextPost={nextPost}
-        prevPost={prevPost}
-      />
+      <Post post={post} nextPost={nextPost} prevPost={prevPost} />
     </Layout>
   );
 };
 
 export async function getStaticPaths({ locale }) {
   const response = await find(locale, 50);
-  console.log(response);
   return {
     paths: response.posts.map((post) => {
       // const params = new URL(post.slug).pathname

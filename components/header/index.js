@@ -10,12 +10,20 @@ import Button from "components/button";
 const Header = ({ name, links }) => {
   const { locale, locales, defaultLocale, asPath } = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const handleLinkClick = () => {
+    if (menuVisible) {
+      setMenuVisible(false);
+    }
+  };
   return (
     <div className={styles.header}>
       <Container fluid>
         <Row align="center">
           <Col xs={8} lg={4}>
-            <h2>{name}</h2>
+            <Link href={"about"} onClick={handleLinkClick}>
+              <h2>{name}</h2>
+            </Link>
           </Col>
           <Visible xs sm md>
             <Col xs={4} lg={0}>
@@ -36,7 +44,9 @@ const Header = ({ name, links }) => {
                   <ul className={styles.header__links}>
                     {links.map(({ path, label }, k) => (
                       <li key={k}>
-                        <Link href={path}>{label}</Link>
+                        <Link href={path} onClick={handleLinkClick}>
+                          {label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -53,6 +63,7 @@ const Header = ({ name, links }) => {
                           className={cn({
                             [styles.active]: local == locale,
                           })}
+                          onClick={handleLinkClick}
                         >
                           {local.split("-")[0]}
                         </Link>

@@ -23,29 +23,31 @@ const Post = ({ post, nextPost, prevPost }) => {
 
   return (
     <article className={styles.post}>
-      <div className={styles.about}>
-        <Container fluid>
-          <Row>
-            <Col xs={12}>
-              <div
-                className={styles.title}
-                dangerouslySetInnerHTML={{ __html: getTitle(post.caption) }}
-              />
-              <div className={styles.content}>
-                <div className={styles.grid}>
-                  {getParagraphs(post.caption).map((__html, k) => (
-                    <span
-                      key={k}
-                      className={styles.content__text}
-                      dangerouslySetInnerHTML={{ __html }}
-                    />
-                  ))}
+      {isMounted && (
+        <div className={styles.about}>
+          <Container fluid>
+            <Row>
+              <Col xs={12}>
+                <div
+                  className={styles.title}
+                  dangerouslySetInnerHTML={{ __html: getTitle(post.caption) }}
+                />
+                <div className={styles.content}>
+                  <div className={styles.grid}>
+                    {getParagraphs(post.caption).map((__html, k) => (
+                      <span
+                        key={k}
+                        className={styles.content__text}
+                        dangerouslySetInnerHTML={{ __html }}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      )}
       <Container>
         <Row align="center">
           <Col xs={2} lg={1}>

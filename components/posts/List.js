@@ -1,19 +1,21 @@
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { useRouter } from "next/router";
-import { FEATURED_TAGS } from "constants/featuredTags";
+import { Visible } from "react-grid-system";
 import cn from "classnames";
+
+import { FEATURED_TAGS } from "constants/featuredTags";
+import { TEXTS } from "constants/texts";
+import { getTitle } from "../../utils/html";
 
 import styles from "./List.module.scss";
 
-import { getTitle } from "../../utils/html";
 import Button from "../button";
 import Image from "next/image";
-import { TEXTS } from "constants/texts";
 import Link from "next/link";
-import { Visible } from "react-grid-system";
 
 const PostsList = ({ posts }) => {
+  const [isMounted, setIsMounted] = useState(false);
   const { locale } = useRouter();
   const [filter, setFilter] = useState([]);
   const [filterVisible, setFilterVisible] = useState(false);
@@ -32,14 +34,19 @@ const PostsList = ({ posts }) => {
       }
     });
   };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
     <div className={styles.postslist}>
-      <Button
-        onClick={() => setFilterVisible((v) => !v)}
-        className={styles.toggleFilterBtn}
-      >
-        Filtros
-      </Button>
+      <Visible xs sm md>
+        <Button
+          onClick={() => setFilterVisible((v) => !v)}
+          className={styles.toggleFilterBtn}
+        >
+          Filtros
+        </Button>
+      </Visible>
       <div
         className={cn(styles.item, styles.tagsfilter, {
           [styles.visible]: filterVisible,
@@ -63,7 +70,7 @@ const PostsList = ({ posts }) => {
           </Button>
         ))}
       </div>
-      {filteredPosts(posts, filter).length > 0 ? (
+      {isMounted && filteredPosts(posts, filter).length > 0 ? (
         filteredPosts(posts, filter).map((post, k) => (
           <Link href={`/${post.slug}`} className={styles.item} key={k}>
             <div

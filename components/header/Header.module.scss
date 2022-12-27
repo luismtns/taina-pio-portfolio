@@ -45,17 +45,19 @@
 }
 div.menu {
   @include respond-to($break-md) {
-    display: none;
+    overflow: hidden;
+    height: 0;
     position: absolute !important;
     top: 65px;
     background-color: $color-white;
     width: 100%;
     z-index: 90;
     font-size: 12px;
-    height: 90vh;
+    transition: height 300ms ease-in;
   }
   &.visible {
-    display: block;
+    height: calc(100vh - 80px);
+    border-bottom: 1px solid $color-black;
   }
 }
 button.btnMenu {
