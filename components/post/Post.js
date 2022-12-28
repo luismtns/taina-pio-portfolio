@@ -57,12 +57,14 @@ const Post = ({ post, nextPost, prevPost }) => {
             ></Link>
           </Col>
           <Col xs={12} lg={10}>
-            <div className="post__body">
-              {post.type === "text" && <TextBlock post={post} />}
-              {post.type === "photo" && <MediaBlock post={post} />}
-              {post.type === "photoset" && <MediaBlock post={post} />}
-              {post.type === "video" && <MediaBlock post={post} />}
-            </div>
+            {isMounted && (
+              <div className="post__body">
+                {post.type === "text" && <TextBlock post={post} />}
+                {post.type === "photo" && <MediaBlock post={post} />}
+                {post.type === "photoset" && <MediaBlock post={post} />}
+                {post.type === "video" && <MediaBlock post={post} />}
+              </div>
+            )}
           </Col>
           <Col xs={0} lg={1}>
             <Link

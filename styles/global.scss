@@ -1,4 +1,5 @@
-@import "carousel.scss";
+@import "carousel";
+@import "cursor";
 h1 {
   font-size: 3.75rem;
   line-height: 1.4;
@@ -20,6 +21,7 @@ html,
 body,
 #__next {
   height: 100%;
+  overflow-x: hidden;
 
   /* ===== Scrollbar CSS ===== */
   /* Firefox */

@@ -5,7 +5,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function MyCarousel({ children }) {
   return (
-    <Carousel showArrows={false} showStatus={false} showThumbs={false}>
+    <Carousel
+      suppressHydrationWarning={true}
+      showArrows={false}
+      showStatus={false}
+      showThumbs={false}
+    >
       {children}
     </Carousel>
   );

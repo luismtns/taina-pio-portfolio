@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Hidden, useScreenClass, Visible } from "react-grid-system";
 import cn from "classnames";
@@ -21,11 +21,11 @@ const MediaBlock = ({ post }) => {
 
   let PhotosWrapper = screenClass.includes("xs", "sm", "md")
     ? MyCarousel
-    : Fragment;
+    : (props) => <div {...props} />;
   return (
     <div className={styles.media}>
       {/* <div dangerouslySetInnerHTML={{ __html: post.caption }} /> */}
-      {post.photos && (
+      {post && post.photos && (
         <div className={styles.photos}>
           <PhotosWrapper>
             {post.photos.map((photo, i) => {
