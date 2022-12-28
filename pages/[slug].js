@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import Post from "../components/post/Post";
 
 const Show = ({ post, nextPost, prevPost }) => {
-  console.log({ post });
+  const { asPath } = useRouter();
   const formattedDate = new Date(
     post.date.replace(/-/g, "/")
   ).toLocaleDateString("pt-BR", {
@@ -20,24 +20,22 @@ const Show = ({ post, nextPost, prevPost }) => {
       "@type": "Article",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "${process.env.NEXT_PUBLIC_BASE_URL}${post.pathname}"
+        "@id": "${process.env.NEXT_PUBLIC_BASE_URL}/${asPath}"
       },
       "headline": "${post.summary}",
       "datePublished": "${formattedDate}",
       "dateModified": "${formattedDate}",
       "author": {
         "@type": "Person",
-        "name": "Lauren Ashpole",
-        "url": "https://laurenashpole.com"
+        "name": "Tainá Pio",
+        "url": "http://tainapio.com/"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Lauren Ashpole"
+        "name": "Tainá Pio""
       },
       "image": [
-        "${process.env.NEXT_PUBLIC_BASE_URL}/api/og-image?headline=${
-    post.headline || post.summary
-  }&type=${post.type}"
+        "${post?.photos?.[0]}"
       ]
     }
   `;

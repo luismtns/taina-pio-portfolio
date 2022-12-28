@@ -19,6 +19,7 @@
       @include respond-to($break-md) {
         width: 100%;
         display: block;
+        text-align: left;
         margin-left: 0;
         margin-bottom: 0;
         border-radius: 0;
@@ -39,7 +40,7 @@
       width: 30px;
       height: 30px;
       object-fit: contain;
-      float: right;
+      margin-left: 16px;
     }
   }
 
@@ -47,7 +48,7 @@
     padding: 8px 30px;
     border-bottom: 1px solid $color-black;
     h2 {
-      font-size: 30px;
+      font-size: 22px;
     }
     display: flex;
     flex-direction: row;
@@ -79,20 +80,19 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      padding-left: 60px;
+      padding-left: 30px;
       @include respond-to($break-md) {
+        padding-left: 0;
         flex-direction: row;
         flex: 1;
       }
       .tagItem {
         width: 100%;
-        text-align: center;
         margin-left: 18px;
         min-width: 180px;
         opacity: 0;
         @include respond-to($break-md) {
           min-width: auto;
-          width: 60px;
         }
         &:first-child {
           margin-left: 0;
@@ -101,7 +101,15 @@
           opacity: 1;
         }
         img {
-          display: inline-block;
+          display: block;
+          margin: 0 auto;
+          width: 42px;
+          height: 42px;
+          @include respond-to($break-md) {
+            width: 32px;
+            height: 32px;
+          }
+          object-fit: contain;
         }
       }
     }

@@ -50,13 +50,13 @@ const Post = ({ post, nextPost, prevPost }) => {
       )}
       <Container>
         <Row align="center">
-          <Col xs={2} lg={1}>
+          <Col xs={0} lg={1}>
             <Link
               className={cn(styles.post__prev, styles.arrow)}
               href={prevPost}
             ></Link>
           </Col>
-          <Col xs={8} lg={10}>
+          <Col xs={12} lg={10}>
             <div className="post__body">
               {post.type === "text" && <TextBlock post={post} />}
               {post.type === "photo" && <MediaBlock post={post} />}
@@ -64,7 +64,7 @@ const Post = ({ post, nextPost, prevPost }) => {
               {post.type === "video" && <MediaBlock post={post} />}
             </div>
           </Col>
-          <Col xs={2} lg={1}>
+          <Col xs={0} lg={1}>
             <Link
               className={cn(styles.post__next, styles.arrow)}
               href={nextPost}

@@ -2,8 +2,14 @@
 
 .media {
   margin-top: 20px;
+  @include respond-to($break-md) {
+    margin-top: 0;
+  }
 }
 .photos {
+  @include respond-to($break-md) {
+    margin: 0 -15px;
+  }
   &__item {
     display: none;
     &.visible {
@@ -21,8 +27,6 @@
   margin: 20px auto;
   cursor: pointer;
   @include respond-to($break-md) {
-    height: 40px;
-    width: 40px;
-    margin: 8px auto;
+    display: none;
   }
 }
