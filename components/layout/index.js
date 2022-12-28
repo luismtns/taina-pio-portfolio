@@ -16,7 +16,7 @@ const Layout = ({ children, meta }) => {
         title={(meta || {}).title}
         description={
           (meta || {}).description ||
-          "The latest font releases and recommendations. Plus code snippets, bookmarks, and project updates."
+          "Tainá é designer, com foco em realizar propostas gráficas, impressas e digitais para identidades visuais, livros, sinalizações e sites."
         }
       />
       <Header {...HEADER[locale]} />

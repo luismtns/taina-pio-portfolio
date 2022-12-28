@@ -23,6 +23,17 @@ body,
   height: 100%;
   overflow-x: hidden;
 
+  // Selection
+  ::-moz-selection {
+    /* Code for Firefox */
+    color: $color-white;
+    background: $color-black;
+  }
+
+  ::selection {
+    color: $color-white;
+    background: $color-black;
+  }
   /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {

@@ -4,7 +4,7 @@ import { find } from "../utils/tumblr";
 import Layout from "../components/layout";
 import Post from "../components/post/Post";
 
-const Show = ({ post, nextPost, prevPost }) => {
+const Show = ({ post, nextPost, prevPost, host }) => {
   const { asPath } = useRouter();
   const formattedDate = new Date(
     post.date.replace(/-/g, "/")
@@ -14,48 +14,40 @@ const Show = ({ post, nextPost, prevPost }) => {
     day: "2-digit",
   });
 
-  const structuredData = `
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "${process.env.NEXT_PUBLIC_BASE_URL}/${asPath}"
-      },
-      "headline": "${post.summary}",
-      "datePublished": "${formattedDate}",
-      "dateModified": "${formattedDate}",
-      "author": {
-        "@type": "Person",
-        "name": "Tainá Pio",
-        "url": "http://tainapio.com/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Tainá Pio""
-      },
-      "image": [
-        "${post?.photos?.[0]}"
-      ]
-    }
-  `;
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.NEXT_PUBLIC_BASE_URL}${asPath}`,
+    },
+    headline: `${post.summary}`,
+    datePublished: `${formattedDate}`,
+    dateModified: `${formattedDate}`,
+    author: {
+      "@type": "Person",
+      name: "Tainá Pio",
+      url: "http://tainapio.com/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Tainá Pio",
+    },
+    image: [`${post?.photos?.[0]?.original_size.url}`],
+  });
 
   return (
     <Layout
       meta={{
         title: post.headline || post.summary || "",
-        pathname: post.pathname,
+        pathname: `${asPath}`,
         twitter: {
           card: "summary_large_image",
-          image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og-image?headline=${
-            post.headline || post.summary
-          }&type=${post.type}`,
+          image: `${post?.photos?.[0]?.original_size.url}`,
         },
         og: {
           type: "article",
-          image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og-image?headline=${
-            post.headline || post.summary
-          }&type=${post.type}`,
+          image: `${post?.photos?.[0]?.original_size.url}`,
         },
         structuredData,
       }}
@@ -69,10 +61,6 @@ export async function getStaticPaths({ locale }) {
   const response = await find(locale, 50);
   return {
     paths: response.posts.map((post) => {
-      // const params = new URL(post.slug).pathname
-      //   .replace("/post/", "")
-      //   .split("/");
-      // console.log(params);
       return { params: { slug: post.slug } };
     }),
     fallback: "blocking",
