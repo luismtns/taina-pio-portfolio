@@ -1,18 +1,19 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
+import Slider from "react-slick";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function MyCarousel({ children }) {
+function MyCarousel({ children, ...config }) {
   return (
-    <Carousel
-      suppressHydrationWarning={true}
-      showArrows={false}
-      showStatus={false}
-      showThumbs={false}
+    <Slider
+      variableWidth={true}
+      centerMode={true}
+      centerPadding={"0px"}
+      {...config}
     >
       {children}
-    </Carousel>
+    </Slider>
   );
 }
 

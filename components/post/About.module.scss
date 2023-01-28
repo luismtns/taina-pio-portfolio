@@ -1,35 +1,4 @@
 @import "/styles/svgs";
-.post {
-  border-left: 4px solid $color-black;
-  border-right: 4px solid $color-black;
-  border-bottom: 5px solid $color-black;
-  @include respond-to($break-md) {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .arrow {
-    background-size: contain;
-    height: 80px;
-    width: 80px;
-    display: block;
-    content: " ";
-
-    @include respond-to($break-md) {
-      display: none;
-    }
-  }
-  &__prev {
-    background: url(arrowLeft()) no-repeat left center;
-  }
-  &__next {
-    background: url(arrowRight()) no-repeat left center;
-  }
-
-  &__body {
-    margin: 0 -1px;
-  }
-}
-
 .about {
   // border-bottom: 1px solid $color-black;
   h2 {
@@ -54,7 +23,7 @@
     background-color: $color-white;
     transition: height 300ms ease;
     padding: 0 15px;
-    border-bottom: 1px solid $color-black;
+    border-bottom: 5px solid $color-black;
     @include respond-to($break-md) {
       position: relative;
       border-bottom: none;

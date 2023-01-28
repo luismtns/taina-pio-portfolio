@@ -7,11 +7,12 @@ import Image from "next/image";
 import styles from "./MediaBlock.module.scss";
 import MyCarousel from "components/carousel";
 
-const MediaBlock = ({ post }) => {
+const MediaBlock = ({ post, enableImageChange }) => {
   const screenClass = useScreenClass();
 
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const nextPhoto = (newIndex) => {
+    if (!enableImageChange) return;
     if (post.photos[newIndex]) {
       setCurrentPhoto(newIndex);
     } else {
@@ -27,42 +28,24 @@ const MediaBlock = ({ post }) => {
       {/* <div dangerouslySetInnerHTML={{ __html: post.caption }} /> */}
       {post && post.photos && (
         <div className={styles.photos}>
-          <PhotosWrapper>
-            {post.photos.map((photo, i) => {
-              return (
-                <div
-                  className={cn(styles.photos__item, {
-                    [styles.visible]: screenClass.includes("xs", "sm", "md")
-                      ? true
-                      : currentPhoto == i,
-                  })}
-                  key={i}
-                >
-                  <img alt="" src={photo.original_size.url} />
-                  <div dangerouslySetInnerHTML={{ __html: photo.caption }} />
-                </div>
-              );
-            })}
-          </PhotosWrapper>
+          {/* <PhotosWrapper> */}
+          {post.photos.map((photo, i) => {
+            return (
+              <div
+                className={cn(styles.photos__item, {
+                  [styles.visible]: currentPhoto == i,
+                })}
+                key={i}
+                onClick={() => nextPhoto(currentPhoto + 1)}
+              >
+                <img alt="" src={photo.original_size.url} />
+                <div dangerouslySetInnerHTML={{ __html: photo.caption }} />
+              </div>
+            );
+          })}
+          {/* </PhotosWrapper> */}
         </div>
       )}
-      <div
-        className={styles.nextPhoto}
-        onClick={() => nextPhoto(currentPhoto + 1)}
-      />
-
-      {/* {post.video && post.video.youtube && (
-        <div className="media__content media__content--video">
-          <iframe
-            width="700"
-            height="383"
-            src={`https://www.youtube.com/embed/${post.video.youtube.video_id}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      )} */}
     </div>
   );
 };

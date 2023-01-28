@@ -1,19 +1,17 @@
 @import "/styles/svgs";
 
 .media {
-  margin-top: 20px;
-  @include respond-to($break-md) {
-    margin-top: 0;
-  }
 }
 .photos {
-  @include respond-to($break-md) {
-    margin: 0 -15px;
-  }
+  width: 60vw;
   &__item {
     display: none;
     &.visible {
       display: block;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
     }
   }
 }

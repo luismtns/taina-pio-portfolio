@@ -20,13 +20,13 @@ const Header = ({ name, links }) => {
     <div className={styles.header}>
       <Container fluid>
         <Row align="center">
-          <Col xs={8} lg={4}>
+          <Col xs={8} md={4}>
             <Link href={"about"} onClick={handleLinkClick}>
               <h2>{name}</h2>
             </Link>
           </Col>
-          <Visible xs sm md>
-            <Col xs={4} lg={0}>
+          <Visible xs sm>
+            <Col xs={4} md={0}>
               <Button
                 onClick={() => setMenuVisible((v) => !v)}
                 className={cn(styles.btnMenu, {
@@ -38,10 +38,10 @@ const Header = ({ name, links }) => {
           <Col
             className={cn(styles.menu, { [styles.visible]: menuVisible })}
             xs={12}
-            lg={8}
+            md={8}
           >
             <Row>
-              <Col xs={12} lg={6}>
+              <Col xs={12} md={6}>
                 {links && (
                   <ul className={styles.header__links}>
                     {links.map(({ path, label }, k) => (
@@ -54,7 +54,7 @@ const Header = ({ name, links }) => {
                   </ul>
                 )}
               </Col>
-              <Col xs={12} lg={6}>
+              <Col xs={12} md={6}>
                 {locales && (
                   <div className={styles.header__locales}>
                     {locales.reverse().map((local, k) => (
