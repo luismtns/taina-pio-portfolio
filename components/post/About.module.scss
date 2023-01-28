@@ -1,6 +1,9 @@
 @import "/styles/svgs";
 .about {
   // border-bottom: 1px solid $color-black;
+  @include respond-to($break-md) {
+    margin-top: 20px;
+  }
   h2 {
     font-size: 24px;
     padding: 8px 0;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Visible } from "react-grid-system";
 import cn from "classnames";
 
 import { FEATURED_TAGS } from "constants/featuredTags";
@@ -17,27 +16,30 @@ import Post from "components/post/Post";
 import MyCarousel from "components/carousel";
 import About from "components/post/About";
 
-const PostsList = ({ posts }) => {
+const PostsList = ({ posts, initialIndex }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [index, setIndex] = useState(0);
   const { locale } = useRouter();
-
+  const handlePostChange = (index) => {
+    setIndex(index);
+  };
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  console.log({ posts, index });
   return (
     <div className={styles.postslist}>
       {isMounted && posts ? (
         <>
           {posts[index] && <About post={posts[index]} />}
           <MyCarousel
-            useTransform={false}
+            initialSlide={initialIndex}
+            infinite={true}
             focusOnSelect={true}
-            afterChange={setIndex}
+            afterChange={handlePostChange}
+            swipe={false}
           >
             {posts.map((post, k) => (
-              <Post post={post} enableImageChange={k == index} />
+              <Post key={k} post={post} enableImageChange={k == index} />
             ))}
           </MyCarousel>
         </>

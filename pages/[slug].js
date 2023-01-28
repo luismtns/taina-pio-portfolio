@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import { find } from "../utils/tumblr";
 import Layout from "../components/layout";
 import Post from "../components/post/Post";
+import PostsList from "components/posts/List";
 
-const Show = ({ post, nextPost, prevPost, host }) => {
+const Show = ({ posts, pagination, currentIndex }) => {
   const { asPath } = useRouter();
+  const post = posts[currentIndex] || null;
+  if (!post) return null;
   const formattedDate = new Date(
     post.date.replace(/-/g, "/")
   ).toLocaleDateString("pt-BR", {
@@ -52,7 +55,7 @@ const Show = ({ post, nextPost, prevPost, host }) => {
         structuredData,
       }}
     >
-      <Post post={post} nextPost={nextPost} prevPost={prevPost} />
+      <PostsList posts={posts} initialIndex={currentIndex} />
     </Layout>
   );
 };
@@ -68,21 +71,13 @@ export async function getStaticPaths({ locale }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const response = await find(locale, 50);
-
-  const postIndex = response.posts.findIndex(({ slug }) => params.slug == slug);
-  if (!(response.posts || [])[0] || postIndex < 0) {
+  const response = await find(locale);
+  const index = response.posts.findIndex(({ slug }) => params.slug == slug);
+  if (!(response.posts || [])[0] || index < 0) {
     return { notFound: true };
   }
-
   return {
-    props: {
-      post: response.posts[postIndex],
-      nextPost: response.posts[postIndex + 1]?.slug || response.posts[0].slug,
-      prevPost:
-        response.posts[postIndex - 1]?.slug ||
-        response.posts[response.posts.length - 1].slug,
-    },
+    props: { ...response, currentIndex: index },
     revalidate: 3600,
   };
 }

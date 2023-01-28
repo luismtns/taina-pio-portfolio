@@ -35,7 +35,7 @@ function Cursor() {
           active: active,
           visible: position,
         })}
-        style={{ left: position?.x, top: position?.y }}
+        style={{ left: position?.x || 0, top: position?.y || 0 }}
       />
     </>
   );

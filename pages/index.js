@@ -10,9 +10,7 @@ import PostsList from "components/posts/List";
 const Home = ({ posts, pagination }) => {
   return (
     <Layout>
-      <main className={styles.main}>
-        <PostsList posts={posts} />
-      </main>
+      <PostsList posts={posts} />
     </Layout>
   );
 };

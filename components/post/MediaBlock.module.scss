@@ -4,6 +4,9 @@
 }
 .photos {
   width: 60vw;
+  @include respond-to($break-md) {
+    width: 80vw;
+  }
   &__item {
     display: none;
     &.visible {

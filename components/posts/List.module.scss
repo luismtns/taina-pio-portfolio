@@ -1,4 +1,8 @@
 .postslist {
+  @include respond-to($break-md) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
   button.toggleFilterBtn {
     @include respond-to($break-md) {
       display: block;
