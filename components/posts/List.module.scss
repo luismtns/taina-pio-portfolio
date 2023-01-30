@@ -126,3 +126,10 @@
     }
   }
 }
+.carousel {
+  .slick-slide {
+    border-left: 4px solid $color-black;
+    border-right: 4px solid $color-black;
+    border-bottom: 5px solid $color-black;
+  }
+}

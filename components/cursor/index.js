@@ -8,12 +8,18 @@ function Cursor() {
     if (navigator.userAgent.indexOf("Mobile") > -1 || window.innerWidth < 768)
       return;
     window.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("click", handleClick);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("click", handleClick);
     };
   }, []);
+  const handleMouseLeave = () => {
+    setPosition(null);
+  };
+
   const handleClick = (ev) => {
     setActive(true);
 

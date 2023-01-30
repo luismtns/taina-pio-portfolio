@@ -9,9 +9,6 @@ import { getTitle } from "../../utils/html";
 
 import styles from "./List.module.scss";
 
-import Button from "../button";
-import Image from "next/image";
-import Link from "next/link";
 import Post from "components/post/Post";
 import MyCarousel from "components/carousel";
 import About from "components/post/About";
@@ -32,11 +29,16 @@ const PostsList = ({ posts, initialIndex }) => {
         <>
           {posts[index] && <About post={posts[index]} />}
           <MyCarousel
+            className={styles.carousel}
             initialSlide={initialIndex}
             infinite={true}
             focusOnSelect={true}
             afterChange={handlePostChange}
             swipe={false}
+            variableWidth={true}
+            centerMode={true}
+            adaptiveHeight={true}
+            slidesToShow={1}
           >
             {posts.map((post, k) => (
               <Post key={k} post={post} enableImageChange={k == index} />

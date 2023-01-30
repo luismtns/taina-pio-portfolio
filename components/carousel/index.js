@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function MyCarousel({ children, ...config }) {
+function MyCarousel({ children, className, ...config }) {
   const slider = useRef(null);
   const slide = (e) => {
     const { deltaY } = e;
@@ -13,13 +13,11 @@ function MyCarousel({ children, ...config }) {
   return (
     <div onWheel={slide} onMouseOut={() => {}}>
       <Slider
+        className={className}
         ref={slider}
         useTransform={false}
-        variableWidth={true}
-        centerMode={true}
-        infinite={true}
         centerPadding={"0px"}
-        slidesToShow={1}
+        infinite={true}
         {...config}
       >
         {children}

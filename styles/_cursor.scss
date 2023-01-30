@@ -6,8 +6,9 @@ html,
   cursor: none;
 }
 .custom-cursor {
+  display: none;
   /* Configura o cursor personalizado */
-  $cubic-bezier: cubic-bezier(0.22, -0.1, 0.55, 1.07);
+  $cubic-bezier: cubic-bezier(0.29, 0.66, 0.82, 0.8);
   opacity: 0;
   width: 16px;
   height: 16px;
@@ -23,6 +24,7 @@ html,
     transform: translate(-50%, -50%) scale(2);
   }
   &.visible {
+    display: block;
     opacity: 1;
   }
 }

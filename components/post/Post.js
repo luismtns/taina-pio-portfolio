@@ -13,10 +13,6 @@ import MediaBlock from "./MediaBlock";
 const Post = ({ post, enableImageChange }) => {
   const [isMounted, setIsMounted] = useState(false);
 
-  // const isTablet = useMediaQuery({
-  //   query: "(min-width: 768px)",
-  // });
-
   useEffect(() => {
     setIsMounted(true);
   }, []);

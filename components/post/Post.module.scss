@@ -3,6 +3,7 @@
   border-left: 4px solid $color-black;
   border-right: 4px solid $color-black;
   border-bottom: 5px solid $color-black;
+  margin: 0 -1px;
   @include respond-to($break-md) {
     display: flex;
     flex-direction: column-reverse;
@@ -26,21 +27,11 @@
   }
 
   &__body {
-    margin: 0 -1px;
   }
 }
 
 .about {
   // border-bottom: 1px solid $color-black;
-  h2 {
-    font-size: 24px;
-    padding: 8px 0;
-
-    @include respond-to($break-md) {
-      font-size: 20px;
-      padding-bottom: 0;
-    }
-  }
   .content {
     height: 0;
     width: 100%;
