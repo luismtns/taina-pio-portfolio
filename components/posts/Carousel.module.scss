@@ -1,4 +1,8 @@
-.postslist {
+.postsCarousel {
+  @include respond-to($break-md) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
   button.toggleFilterBtn {
     @include respond-to($break-md) {
       display: block;
@@ -120,5 +124,12 @@
     h2 {
       opacity: 0.5;
     }
+  }
+}
+.carousel {
+  .slick-slide {
+    border-left: 4px solid $color-black;
+    border-right: 4px solid $color-black;
+    border-bottom: 5px solid $color-black;
   }
 }

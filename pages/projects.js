@@ -5,12 +5,12 @@ import styles from "styles/Home.module.scss";
 import { find } from "utils/tumblr";
 
 import Layout from "components/layout";
-import PostsCarousel from "components/posts/Carousel";
+import PostsList from "components/posts/List";
 
 const Home = ({ posts, pagination }) => {
   return (
     <Layout>
-      <PostsCarousel posts={posts} initialIndex={1} />
+      <PostsList posts={posts} initialIndex={1} />
     </Layout>
   );
 };

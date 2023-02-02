@@ -12,6 +12,18 @@ const nextConfig = {
     prependData: `@import "./styles/variables.scss";
     @import "./styles/functions.scss"; `,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/projetos",
+        destination: "/projects",
+      },
+      {
+        source: "/sobre",
+        destination: "/about",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

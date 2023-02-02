@@ -1,18 +1,20 @@
 export const HEADER = {
   "pt-BR": {
     name: "Tainá Pio",
+    aboutPath: "/sobre",
     links: [
       {
-        path: "/",
+        path: "/projetos",
         label: "Index",
       },
     ],
   },
   "en-US": {
     name: "Tainá Pio",
+    aboutPath: "/about",
     links: [
       {
-        path: "/",
+        path: "/projects",
         label: "Index",
       },
     ],

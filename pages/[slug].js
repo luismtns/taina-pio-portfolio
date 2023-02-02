@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { find } from "../utils/tumblr";
 import Layout from "../components/layout";
 import Post from "../components/post/Post";
-import PostsList from "components/posts/List";
+import PostsList from "components/posts/Carousel";
 
 const Show = ({ posts, pagination, currentIndex }) => {
   const { asPath } = useRouter();

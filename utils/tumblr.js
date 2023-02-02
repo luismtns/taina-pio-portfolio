@@ -8,7 +8,7 @@ const CLIENT = {
   returnPromises: true,
 };
 
-const blogUrl = "test-blog-api.tumblr.com";
+const blogUrl = "taina-pio.tumblr.com";
 
 export async function find(locale, limit = 10, page = 1, id, tag) {
   const client = tumblr.createClient(CLIENT);

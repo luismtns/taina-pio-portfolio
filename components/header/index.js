@@ -7,7 +7,7 @@ import cn from "classnames";
 import styles from "./Header.module.scss";
 import Button from "components/button";
 
-const Header = ({ name, links }) => {
+const Header = ({ name, aboutPath, links }) => {
   const { locale, locales, defaultLocale, asPath } = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -21,7 +21,7 @@ const Header = ({ name, links }) => {
       <Container fluid>
         <Row align="center">
           <Col xs={8} md={4}>
-            <Link href={"about"} onClick={handleLinkClick}>
+            <Link href={aboutPath} onClick={handleLinkClick}>
               <h2>{name}</h2>
             </Link>
           </Col>
