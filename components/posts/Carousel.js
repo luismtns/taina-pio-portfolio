@@ -37,6 +37,7 @@ const PostsCarousel = ({ posts, initialIndex }) => {
             centerMode={true}
             adaptiveHeight={true}
             slidesToShow={1}
+            slidesToScroll={1}
           >
             {posts.map((post, k) => (
               <Post key={k} post={post} enableImageChange={k == index} />
