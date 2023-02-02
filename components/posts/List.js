@@ -42,7 +42,9 @@ const PostsList = ({ posts }) => {
       <Visible xs sm md>
         <Button
           onClick={() => setFilterVisible((v) => !v)}
-          className={styles.toggleFilterBtn}
+          className={cn(styles.toggleFilterBtn, {
+            [styles.active]: filterVisible,
+          })}
         >
           Filtros
         </Button>

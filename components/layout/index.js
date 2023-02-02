@@ -21,7 +21,7 @@ const Layout = ({ children, meta }) => {
       />
       <Header {...HEADER[locale]} />
       <main className="layout__main">{children}</main>
-      <Cursor />
+      {/* <Cursor /> */}
     </div>
   );
 };

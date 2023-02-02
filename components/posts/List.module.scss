@@ -1,12 +1,25 @@
 .postslist {
+  @include respond-to($break-md) {
+    position: relative;
+  }
   button.toggleFilterBtn {
     @include respond-to($break-md) {
       display: block;
       width: 100%;
       border-radius: 0;
       border: none;
-      border-bottom: 1px solid $color-black;
+      border-bottom: 3px solid $color-black;
       margin-bottom: 0;
+      text-align: left;
+      font-size: 30px;
+      padding: 11px 30px;
+      &.active {
+        background-color: $color-black;
+        color: $color-white;
+        img {
+          filter: invert(100);
+        }
+      }
     }
   }
   .tagsfilter {
@@ -45,10 +58,13 @@
   }
 
   .item {
-    padding: 8px 30px;
-    border-bottom: 1px solid $color-black;
+    padding: 11px 30px;
+    border-bottom: 3px solid $color-black;
     h2 {
-      font-size: 22px;
+      font-size: 30px;
+      line-height: 36px;
+      @include respond-to($break-md) {
+      }
     }
     display: flex;
     flex-direction: row;
@@ -59,7 +75,11 @@
       @include respond-to($break-md) {
         flex-direction: column;
         display: none;
-        padding: 8px 0;
+        padding: 0;
+        width: 100%;
+        top: 55px;
+        background-color: $color-white;
+        z-index: 10;
         &.visible {
           display: flex;
         }
@@ -71,6 +91,7 @@
         flex: 1;
         display: block;
         width: 100%;
+        margin-bottom: 10px;
       }
     }
     .tags {
