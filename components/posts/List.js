@@ -46,7 +46,7 @@ const PostsList = ({ posts }) => {
             [styles.active]: filterVisible,
           })}
         >
-          Filtros
+          <h2>{TEXTS[locale].filters}</h2>
         </Button>
       </Visible>
       <div

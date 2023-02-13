@@ -20,8 +20,8 @@ const Meta = ({
 
   twitter = {
     card: "summary",
-    site: "@laurenashpole",
-    creator: "@laurenashpole",
+    // site: "@laurenashpole",
+    // creator: "@laurenashpole",
     title: title,
     description: description,
     ...(twitter || {}),
@@ -32,7 +32,7 @@ const Meta = ({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Tainá Pio",
-      "url": "https://laurenashpole.com"
+      "url": "http://tainapio.com/"
     }`,
     ...(structuredData ? [structuredData] : []),
   ];

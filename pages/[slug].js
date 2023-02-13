@@ -42,7 +42,7 @@ const Show = ({ posts, pagination, currentIndex }) => {
   return (
     <Layout
       meta={{
-        title: post.headline || post.summary || "",
+        title: `Tainá Pio | ${post.headline || post.summary || ""}`,
         pathname: `${asPath}`,
         twitter: {
           card: "summary_large_image",

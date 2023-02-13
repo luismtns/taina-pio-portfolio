@@ -8,7 +8,9 @@ function MyCarousel({ children, className, ...config }) {
   const slider = useRef(null);
   const slide = (e) => {
     const { deltaY } = e;
-    deltaY > 0 ? slider?.current.slickNext() : slider?.current.slickPrev();
+    deltaY / 120 > 0
+      ? slider?.current.slickNext()
+      : slider?.current.slickPrev();
   };
   return (
     <div onWheel={slide} onMouseOut={() => {}}>
