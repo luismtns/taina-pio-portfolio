@@ -57,6 +57,9 @@
       text-decoration: underline;
     }
   }
+
+  .title {
+  }
 }
 div.menu {
   @include respond-to($break-md) {
@@ -91,5 +94,24 @@ button.btnMenu {
   float: right;
   &-active {
     background: url(close()) no-repeat left center;
+  }
+}
+
+.about {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: $color-white;
+  top: calc(100% - 16px);
+  left: 0;
+  border-bottom: 5px solid $color-black;
+  padding: 16px 0 16px;
+  margin-top: -5px;
+  display: none;
+  &--active {
+    display: block;
+  }
+  .text {
+    font-size: 18px;
   }
 }

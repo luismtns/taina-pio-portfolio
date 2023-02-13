@@ -6,10 +6,12 @@ import cn from "classnames";
 
 import styles from "./Header.module.scss";
 import Button from "components/button";
+import { TEXTS } from "constants/texts";
 
 const Header = ({ name, aboutPath, links }) => {
   const { locale, locales, defaultLocale, asPath } = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
 
   const handleLinkClick = () => {
     if (menuVisible) {
@@ -18,12 +20,32 @@ const Header = ({ name, aboutPath, links }) => {
   };
   return (
     <div className={styles.header}>
+      <div
+        onMouseOut={() => setTimeout(() => setAboutVisible(false), 200)}
+        onMouseOver={() => setTimeout(() => setAboutVisible(true), 200)}
+        className={cn(styles.about, {
+          [styles["about--active"]]: !!aboutVisible,
+        })}
+      >
+        <Container fluid>
+          <Row>
+            <Col xs={12} md={6}>
+              <p className={styles.text}>{TEXTS[locale]?.about}</p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
       <Container fluid>
         <Row align="center">
-          <Col xs={8} md={4}>
-            <Link href={aboutPath} onClick={handleLinkClick}>
-              <h2>{name}</h2>
-            </Link>
+          <Col
+            onMouseOver={() => setTimeout(() => setAboutVisible(true), 200)}
+            onMouseOut={() => setTimeout(() => setAboutVisible(false), 200)}
+            xs={8}
+            md={4}
+          >
+            {/* <Link href={aboutPath} onClick={handleLinkClick}> */}
+            <h2 className={styles.title}>{name}</h2>
+            {/* </Link> */}
           </Col>
           <Visible xs sm>
             <Col xs={4} md={0}>
