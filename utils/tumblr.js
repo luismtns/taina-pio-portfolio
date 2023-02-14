@@ -10,7 +10,7 @@ const CLIENT = {
 
 const blogUrl = "taina-pio.tumblr.com";
 
-export async function find(locale, limit = 10, page = 1, id, tag) {
+export async function find(locale, limit = 50, page = 1, id, tag) {
   const client = tumblr.createClient(CLIENT);
   const response = await getPosts(
     client,

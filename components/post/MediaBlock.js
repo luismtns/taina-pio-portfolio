@@ -12,13 +12,17 @@ const MediaBlock = ({ post, enableImageChange }) => {
 
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const nextPhoto = (newIndex) => {
-    if (!enableImageChange) return;
-    if (post.photos[newIndex]) {
-      setCurrentPhoto(newIndex);
-    } else {
-      setCurrentPhoto(0);
-    }
+    setTimeout(() => {
+      if (post.photos[newIndex]) {
+        setCurrentPhoto(newIndex);
+      } else {
+        setCurrentPhoto(0);
+      }
+    }, 200);
   };
+
+  // React.useEffect(() => {
+  // }, []);
 
   let PhotosWrapper = screenClass.includes("xs", "sm", "md")
     ? MyCarousel
@@ -34,9 +38,12 @@ const MediaBlock = ({ post, enableImageChange }) => {
               <div
                 className={cn(styles.photos__item, {
                   [styles.visible]: currentPhoto == i,
+                  [styles.clickable]: true,
                 })}
                 key={i}
-                onClick={() => nextPhoto(currentPhoto + 1)}
+                onClick={
+                  enableImageChange ? () => nextPhoto(currentPhoto + 1) : null
+                }
               >
                 <img alt="" src={photo.original_size.url} />
                 <div dangerouslySetInnerHTML={{ __html: photo.caption }} />

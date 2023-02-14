@@ -43,9 +43,9 @@ const Header = ({ name, aboutPath, links }) => {
             xs={8}
             md={4}
           >
-            {/* <Link href={aboutPath} onClick={handleLinkClick}> */}
-            <h2 className={styles.title}>{name}</h2>
-            {/* </Link> */}
+            <Link href={"/"} onClick={handleLinkClick}>
+              <h2 className={styles.title}>{name}</h2>
+            </Link>
           </Col>
           <Visible xs sm>
             <Col xs={4} md={0}>
