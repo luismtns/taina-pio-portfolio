@@ -13,7 +13,7 @@ import About from "components/post/About";
 
 const PostsCarousel = ({ posts, initialIndex }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(initialIndex);
   const { locale } = useRouter();
   const handlePostChange = (index) => {
     setIndex(index);
