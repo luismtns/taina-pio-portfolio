@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Hidden, useScreenClass, Visible } from "react-grid-system";
 import cn from "classnames";
-import Image from "next/image";
 
 import styles from "./MediaBlock.module.scss";
 import MyCarousel from "components/carousel";
+import PostImage from "./Image";
 
 const MediaBlock = ({ post, enableImageChange }) => {
   const screenClass = useScreenClass();
@@ -45,7 +45,12 @@ const MediaBlock = ({ post, enableImageChange }) => {
                   enableImageChange ? () => nextPhoto(currentPhoto + 1) : null
                 }
               >
-                <img alt="" src={photo.original_size.url} />
+                <PostImage
+                  alt=""
+                  src={photo.original_size.url}
+                  width={photo.original_size.width}
+                  height={photo.original_size.height}
+                />
                 <div dangerouslySetInnerHTML={{ __html: photo.caption }} />
               </div>
             );
