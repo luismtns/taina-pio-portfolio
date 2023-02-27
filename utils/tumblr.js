@@ -10,7 +10,7 @@ const CLIENT = {
 
 const blogUrl = "taina-pio.tumblr.com";
 
-export async function find(locale, limit = 50, page = 1, id, tag) {
+export async function find(locale, limit = 30, page = 1, id, tag) {
   const client = tumblr.createClient(CLIENT);
   const response = await getPosts(
     client,
@@ -23,7 +23,7 @@ export async function find(locale, limit = 50, page = 1, id, tag) {
   return parseResponse(response, !id, limit, page);
 }
 
-export async function findAll(locale, limit = 50) {
+export async function findAll(locale, limit = 30) {
   const client = tumblr.createClient(CLIENT);
   const initialResponse = await getPosts(client, locale, limit, 0);
   const totalPages = Math.floor(initialResponse.total_posts / limit);

@@ -3,11 +3,11 @@ import cn from "classnames";
 
 import styles from "./Image.module.scss";
 
-function Image({ className, ...imgProps }) {
+function PostImage({ className, width, height, ...imgProps }) {
   const [isVertical, setIsVertical] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const onLoad = ({ target: { width, height } }) => {
-    setIsVertical(height > width);
+  const onLoad = ({ target }) => {
+    setIsVertical(!!(height > width));
     setIsLoaded(true);
   };
   return (
@@ -26,4 +26,4 @@ function Image({ className, ...imgProps }) {
   );
 }
 
-export default Image;
+export default PostImage;
