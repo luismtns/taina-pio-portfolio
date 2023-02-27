@@ -8,7 +8,7 @@ function MyCarousel({ children, className, ...config }) {
   const slider = useRef(null);
   const slide = (e) => {
     const { deltaY } = e;
-    deltaY / 120 > 0
+    deltaY / 200 > 0
       ? slider?.current.slickNext()
       : slider?.current.slickPrev();
   };

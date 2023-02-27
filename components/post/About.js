@@ -29,15 +29,23 @@ const About = ({ post }) => {
                   dangerouslySetInnerHTML={{ __html: getTitle(post.caption) }}
                 />
                 <div className={styles.content}>
-                  <div className={styles.grid}>
-                    {getParagraphs(post.caption).map((__html, k) => (
+                  {/* <div className={styles.grid}> */}
+                  {/* {getParagraphs(
+                      post.caption
+                    ).map((__html, k) => (
                       <span
                         key={k}
                         className={styles.content__text}
                         dangerouslySetInnerHTML={{ __html }}
                       />
-                    ))}
-                  </div>
+                    ))} */}
+                  <span
+                    className={styles.content__text}
+                    dangerouslySetInnerHTML={{
+                      __html: getParagraphs(post.caption).join(""),
+                    }}
+                  />
+                  {/* </div> */}
                 </div>
               </Col>
             </Row>

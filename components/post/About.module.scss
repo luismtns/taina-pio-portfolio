@@ -49,7 +49,9 @@
     &__text {
       padding-bottom: 20px;
       display: inline-block;
+      column-count: 2;
       @include respond-to($break-md) {
+        column-count: 1;
         font-size: 14px;
       }
     }
