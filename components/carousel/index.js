@@ -8,12 +8,14 @@ function MyCarousel({ children, className, ...config }) {
   const slider = useRef(null);
   const [sliding, setSliding] = useState(false);
   const slide = (e) => {
-    if (sliding) return;
-    setSliding(true);
-    const { deltaY } = e;
-    deltaY / 200 > 0
-      ? slider?.current.slickNext()
-      : slider?.current.slickPrev();
+    if (!e || sliding || !slider?.current) return;
+    setSliding(() => {
+      const sliderCur = slider?.current;
+      var direction = e.deltaY > 0 ? 1 : -1;
+      console.log(e.deltaY);
+      direction > 0 ? sliderCur.slickNext() : sliderCur.slickPrev();
+      return true;
+    });
     setTimeout(() => setSliding(false), 800);
   };
   return (
@@ -24,6 +26,7 @@ function MyCarousel({ children, className, ...config }) {
         useTransform={false}
         centerPadding={"0px"}
         infinite={true}
+        lazyLoad={false}
         {...config}
       >
         {children}

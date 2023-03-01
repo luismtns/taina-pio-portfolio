@@ -21,8 +21,12 @@ const MediaBlock = ({ post, enableImageChange }) => {
     }, 200);
   };
 
-  // React.useEffect(() => {
-  // }, []);
+  React.useEffect(() => {
+    setCurrentPhoto(0);
+    return () => {
+      setCurrentPhoto(0);
+    };
+  }, []);
 
   let PhotosWrapper = screenClass.includes("xs", "sm", "md")
     ? MyCarousel
