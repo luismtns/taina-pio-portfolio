@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -6,20 +7,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 function MyCarousel({ children, className, ...config }) {
   const slider = useRef(null);
-  const [sliding, setSliding] = useState(false);
-  const slide = (e) => {
-    if (!e || sliding || !slider?.current) return;
-    setSliding(() => {
-      const sliderCur = slider?.current;
-      var direction = e.deltaY > 0 ? 1 : -1;
-      console.log(e.deltaY);
-      direction > 0 ? sliderCur.slickNext() : sliderCur.slickPrev();
-      return true;
-    });
-    setTimeout(() => setSliding(false), 800);
-  };
   return (
-    <div onWheel={slide}>
+    <ReactScrollWheelHandler
+      upHandler={(e) => slider?.current.slickPrev()}
+      downHandler={(e) => slider?.current.slickNext()}
+    >
       <Slider
         className={className}
         ref={slider}
@@ -31,7 +23,7 @@ function MyCarousel({ children, className, ...config }) {
       >
         {children}
       </Slider>
-    </div>
+    </ReactScrollWheelHandler>
   );
 }
 
