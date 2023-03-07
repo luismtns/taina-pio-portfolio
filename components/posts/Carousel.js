@@ -23,9 +23,9 @@ const PostsCarousel = ({ posts, initialIndex }) => {
   }, []);
   return (
     <div className={styles.postsCarousel}>
+      {posts && posts[index] && <About post={posts[index]} />}
       {isMounted && posts ? (
         <>
-          {posts[index] && <About post={posts[index]} />}
           <MyCarousel
             className={styles.carousel}
             initialSlide={initialIndex}
@@ -39,8 +39,8 @@ const PostsCarousel = ({ posts, initialIndex }) => {
             slidesToShow={1}
             slidesToScroll={1}
           >
-            {posts.map((post, k) => (
-              <Post key={k} post={post} enableImageChange={k == index} />
+            {posts.map((e, k) => (
+              <Post key={k} post={e} enableImageChange={k == index} />
             ))}
           </MyCarousel>
         </>

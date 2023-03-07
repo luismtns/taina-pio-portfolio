@@ -17,6 +17,8 @@ const About = ({ post }) => {
     setIsMounted(true);
   }, []);
 
+  if (!post) return null;
+
   return (
     <>
       {isMounted && (

@@ -6,6 +6,7 @@ const nextConfig = {
   i18n: {
     locales: ["en-US", "pt-BR"],
     defaultLocale: "pt-BR",
+    localeDetection: false,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
