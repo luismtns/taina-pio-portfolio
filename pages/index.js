@@ -10,7 +10,7 @@ import PostsCarousel from "components/posts/Carousel";
 const Home = ({ posts, pagination }) => {
   return (
     <Layout>
-      <PostsCarousel posts={posts} initialIndex={1} />
+      <PostsCarousel posts={posts} initialIndex={0} />
     </Layout>
   );
 };

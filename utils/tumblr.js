@@ -47,10 +47,22 @@ function getPosts(client, locale, limit, offset, id, tag) {
 
 function parseResponse(response, isExcerpt, limit, page) {
   return {
-    posts: (response.posts || []).map((post) => {
-      post.pathname = new URL(post.post_url).pathname;
-      return post.type === "text" ? parseText(post, isExcerpt) : post;
-    }),
+    posts: (response.posts || [])
+      .map((post) => {
+        post.pathname = new URL(post.post_url).pathname;
+
+        const priorityIndex = post.tags.findIndex(
+          (e) => e.indexOf("ordem:") > -1
+        );
+        const priority =
+          priorityIndex > -1
+            ? post.tags.splice(priorityIndex, 1)[0].replace("ordem:", "")
+            : 0;
+        post.priority = priority;
+
+        return post.type === "text" ? parseText(post, isExcerpt) : post;
+      })
+      .sort((a, b) => b.priority - a.priority),
     pagination: getPagination(limit, page, response.total_posts || 0),
   };
 }
