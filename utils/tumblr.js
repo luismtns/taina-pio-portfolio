@@ -48,7 +48,8 @@ function getPosts(client, locale, limit, offset, id, tag) {
 function parseResponse(response, isExcerpt, limit, page) {
   return {
     posts: (response.posts || [])
-      .map((post) => {
+      .map((post, k) => {
+        const index = k + 1;
         post.pathname = new URL(post.post_url).pathname;
 
         const priorityIndex = post.tags.findIndex(
@@ -57,12 +58,12 @@ function parseResponse(response, isExcerpt, limit, page) {
         const priority =
           priorityIndex > -1
             ? post.tags.splice(priorityIndex, 1)[0].replace("ordem:", "")
-            : 0;
+            : index;
         post.priority = priority;
 
         return post.type === "text" ? parseText(post, isExcerpt) : post;
       })
-      .sort((a, b) => b.priority - a.priority),
+      .sort((a, b) => a.priority - b.priority),
     pagination: getPagination(limit, page, response.total_posts || 0),
   };
 }
