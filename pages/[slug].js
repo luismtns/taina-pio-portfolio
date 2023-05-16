@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
-import { find } from "../utils/tumblr";
+import { about, find } from "../utils/tumblr";
 import Layout from "../components/layout";
 import Post from "../components/post/Post";
 import PostsList from "components/posts/Carousel";
 
-const Show = ({ posts, pagination, currentIndex }) => {
+const Show = ({ posts, about, pagination, currentIndex }) => {
   const { asPath } = useRouter();
   const post = posts[currentIndex] || null;
   if (!post) return null;
@@ -41,6 +41,7 @@ const Show = ({ posts, pagination, currentIndex }) => {
 
   return (
     <Layout
+      header={about}
       meta={{
         title: `Tainá Pio | ${post.headline || post.summary || ""}`,
         pathname: `${asPath}`,
@@ -76,8 +77,9 @@ export async function getStaticProps({ params, locale }) {
   if (!(response.posts || [])[0] || index < 0) {
     return { notFound: true };
   }
+  const aboutRes = await about(locale);
   return {
-    props: { ...response, currentIndex: index },
+    props: { ...response, currentIndex: index, about: aboutRes },
     revalidate: 3600,
   };
 }

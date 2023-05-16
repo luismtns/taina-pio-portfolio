@@ -10,17 +10,23 @@ const CLIENT = {
 
 const blogUrl = "taina-pio.tumblr.com";
 
-export async function find(locale, limit = 30, page = 1, id, tag) {
+export async function find(locale, limit = 30, page = 1, tag, id) {
   const client = tumblr.createClient(CLIENT);
   const response = await getPosts(
     client,
     locale,
     limit,
     limit * (page - 1),
-    id,
-    tag
+    tag,
+    id
   );
   return parseResponse(response, !id, limit, page);
+}
+
+export async function about(locale) {
+  const client = tumblr.createClient(CLIENT);
+  const response = await getPosts(client, locale, 10, 0, "about");
+  return response.posts.find((e) => e.tags.includes(locale));
 }
 
 export async function findAll(locale, limit = 30) {
@@ -36,7 +42,7 @@ export async function findAll(locale, limit = 30) {
   return { ...initialResponse, posts: [...initialResponse.posts, ...posts] };
 }
 
-function getPosts(client, locale, limit, offset, id, tag) {
+function getPosts(client, locale, limit, offset, tag, id) {
   return new Promise((resolve) => {
     client
       .blogPosts(blogUrl, { limit, offset, id, tag: [locale, tag] })
@@ -63,6 +69,7 @@ function parseResponse(response, isExcerpt, limit, page) {
 
         return post.type === "text" ? parseText(post, isExcerpt) : post;
       })
+      .filter((e) => e.type != "text")
       .sort((a, b) => a.priority - b.priority),
     pagination: getPagination(limit, page, response.total_posts || 0),
   };

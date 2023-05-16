@@ -7,8 +7,9 @@ import cn from "classnames";
 import styles from "./Header.module.scss";
 import Button from "components/button";
 import { TEXTS } from "constants/texts";
+import { HEADER } from "constants/header";
 
-const Header = ({ name, aboutPath, links }) => {
+const Header = ({ name, aboutText, links }) => {
   const { locale, locales, defaultLocale, asPath } = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
@@ -30,7 +31,10 @@ const Header = ({ name, aboutPath, links }) => {
         <Container fluid>
           <Row>
             <Col xs={12} md={6}>
-              <p className={styles.text}>{TEXTS[locale]?.about}</p>
+              <p
+                className={styles.text}
+                dangerouslySetInnerHTML={{ __html: aboutText }}
+              />
             </Col>
           </Row>
         </Container>
@@ -64,9 +68,9 @@ const Header = ({ name, aboutPath, links }) => {
           >
             <Row>
               <Col xs={12} md={6}>
-                {links && (
+                {HEADER[locale] && (
                   <ul className={styles.header__links}>
-                    {links.map(({ path, label }, k) => (
+                    {HEADER[locale].links.map(({ path, label }, k) => (
                       <li key={k}>
                         <Link href={path} onClick={handleLinkClick}>
                           {label}
